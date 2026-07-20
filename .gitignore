@@ -1,0 +1,5 @@
+fep_data/
+landing/
+__pycache__/
+*.pyc
+.DS_Store
