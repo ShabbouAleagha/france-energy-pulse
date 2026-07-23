@@ -30,7 +30,7 @@ results.
 | S1 | éCO2mix grid archive | CSV `;` | yearly files | — | 1,262,592 |
 | S1b | éCO2mix live API | nested JSON | every 15 min | overlapping pulls, late corrected events | 14,024 |
 | S2 | DPE housing diagnostics | CSV | weekly extracts | schema drift, duplicates, invalid codes, re-diagnoses | ~47,000,000 |
-| S3 | Enedis consumption | CSV | yearly drop | population skew (cities ≫ villages) | 420,000 |
+| S3 | Enedis consumption | CSV | yearly drop | value skew in consumption (row counts are uniform — verified, skew ratio 2.9) | 420,000 |
 | S4 | Weather | nested JSON | daily | nested hourly arrays to flatten | 315,648 |
 | S5 | INSEE communes | Parquet | static | — | 35,000 |
 
