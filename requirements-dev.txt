@@ -1,0 +1,5 @@
+# Development / CI dependencies. The pipeline itself runs on Databricks, where
+# PySpark is provided by the runtime — it is deliberately not pinned here.
+pyarrow>=15.0
+pytest>=8.0
+ruff>=0.5
