@@ -1,8 +1,5 @@
 name: CI
 
-# Runs on every push and pull request to main. Nothing here touches Databricks
-# or costs money: the generator and its tests are pure Python by design, so the
-# data contract stays under continuous test even when no cluster is running.
 on:
   push:
     branches: [main]
@@ -18,7 +15,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
 
       - name: Install dependencies
         run: |
