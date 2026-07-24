@@ -1,6 +1,12 @@
-# Lint configuration. Kept deliberately small: rules that catch real mistakes,
-# without fighting the generator's intentional design choices.
+# Lint configuration.
+#
+# Scope: the Python package we own (the generator) and its tests.
+# Databricks notebooks under src/ are deliberately excluded: they are cell-based
+# artifacts executed by the Databricks runtime, where `spark`, `dbutils` and
+# `display` are injected globals and imports live in the cell that uses them.
+# Linting them with standard Python rules produces noise, not signal.
 line-length = 88
+extend-exclude = ["src"]
 
 [lint]
 select = ["E", "F", "W", "I", "UP", "B"]
@@ -8,6 +14,3 @@ select = ["E", "F", "W", "I", "UP", "B"]
 [lint.per-file-ignores]
 # Tests must adjust sys.path before importing the generator.
 "tests/*" = ["E402"]
-# Databricks notebooks: spark/display/dbutils are injected by the runtime,
-# and notebook cells import where they are used.
-"src/*" = ["F821", "E402"]
