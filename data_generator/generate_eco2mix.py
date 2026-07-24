@@ -16,7 +16,7 @@ import csv
 import json
 import math
 import os
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 import config
 from common import REGIONS, rng

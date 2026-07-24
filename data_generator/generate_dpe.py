@@ -22,8 +22,15 @@ import os
 from datetime import timedelta
 
 import config
-from common import (BUILDING_TYPES, DPE_CLASSES, Commune, get_scale,
-                    make_communes, maybe_null, rng)
+from common import (
+    BUILDING_TYPES,
+    DPE_CLASSES,
+    Commune,
+    get_scale,
+    make_communes,
+    maybe_null,
+    rng,
+)
 
 
 def _row(r, communes: list[Commune], dpe_id: str, diag_date, drifted: bool):
