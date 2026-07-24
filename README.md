@@ -1,4 +1,5 @@
 # ⚡ France Energy Pulse
+[![CI](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/ci.yml)
 
 **A production-style lakehouse on Azure Databricks: 5 sources, 3 file formats,
 2 ingestion modes, ~49M rows — where does France's energy actually go?**
