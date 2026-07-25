@@ -116,3 +116,12 @@ Run in a Unity Catalog workspace. Create a catalog, a `landing` schema with a
 `landing` volume and a `_checkpoints` volume, then run the generator followed by
 the notebooks in numeric order. All notebooks read their catalog name from a
 single constant at the top.
+
+## CI/CD
+
+- **CI** (`.github/workflows/ci.yml`) — runs ruff lint + pytest on every push
+  and PR. The generator and its tests are pure Python, so the data contract
+  stays under continuous test with no Databricks cost.
+- **CD** (`.github/workflows/cd.yml`) — on merge to `main`, imports the `src/`
+  notebooks into the Databricks workspace via the CLI, so what runs there
+  always matches Git. Guarded to skip cleanly if Databricks secrets are absent.
