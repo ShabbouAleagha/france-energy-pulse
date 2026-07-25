@@ -1,0 +1,48 @@
+name: CD
+
+# Continuous Delivery: after code lands on main, sync the notebooks in src/ to
+# the Databricks workspace so what runs there always matches what's in Git.
+#
+# This job only runs if two repository secrets are set:
+#   DATABRICKS_HOST   e.g. https://adb-7405604844160782.2.azuredatabricks.net
+#   DATABRICKS_TOKEN  a workspace personal access token
+# Without them the job is skipped, so the repo stays green for anyone who clones
+# it without a Databricks account.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: cd-databricks
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard — skip if Databricks secrets are absent
+        id: guard
+        run: |
+          if [ -z "${{ secrets.DATABRICKS_HOST }}" ]; then
+            echo "Databricks secrets not set — skipping deploy."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Databricks CLI
+        if: steps.guard.outputs.deploy == 'true'
+        uses: databricks/setup-cli@main
+
+      - name: Import notebooks into the workspace
+        if: steps.guard.outputs.deploy == 'true'
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          TARGET="/Workspace/deployed/france-energy-pulse/src"
+          databricks workspace import-dir src "$TARGET" --overwrite
+          echo "Deployed src/ to $TARGET"
