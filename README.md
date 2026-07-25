@@ -1,6 +1,6 @@
 # ⚡ France Energy Pulse
 [![CI](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/ci.yml)
-
+[![CD](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/cd.yml/badge.svg)](https://github.com/ShabbouAleagha/france-energy-pulse/actions/workflows/cd.yml)
 **A production-style lakehouse on Azure Databricks: 5 sources, 3 file formats,
 2 ingestion modes, ~49M rows — where does France's energy actually go?**
 
@@ -90,10 +90,10 @@ that means something.
 - [x] Phase 2 — Bronze: Auto Loader, schema evolution, rescued data, DQ metrics
 - [x] Phase 3 — Silver: window-function dedup, normalisation, quarantine tables
 - [x] Phase 4 — Gold: renovation priority + consumption vs temperature
-- [ ] Phase 5 — Performance: partitioning, liquid clustering, skew handling on
+- [x] Phase 5 — Performance: partitioning, liquid clustering, skew handling on
       the population-skewed joins
-- [ ] Phase 6 — Ops: Databricks Asset Bundles, CI/CD with GitHub Actions,
-      pytest + data quality tests, SLA monitoring
+- [x] Phase 6 — Ops: pytest data-quality tests, ruff linting, GitHub Actions
+      CI (test + lint) and CD (auto-deploy notebooks to Databricks on merge)
 
 ## Repo map
 
